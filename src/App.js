@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { auth, storeUserInfo } from "./lib/firebase";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 
 import Login from "./components/Login";
+import Nav from "./components/Nav";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -25,29 +27,13 @@ function App() {
     auth.signOut();
   };
 
-  const HeaderContent = () => {
-    if (user) {
-      return (
-        <div class="navbar-end">
-          <div class="navbar-item">{user.name}</div>
-          <div class="navbar-item">
-            <button class="button is-danger is-light is-small" onClick={logout}>
-              {" "}
-              Logout
-            </button>
-          </div>
-        </div>
-      );
-    } else {
-      return <Login />;
-    }
-  };
   return (
-    <div className="container is-fluid">
-      <header class="navbar">
-        {loading ? <p>LOADING.....</p> : <HeaderContent />}
-      </header>
-    </div>
+    <Router>
+      <Nav user={user} loading={loading} logout={logout} />
+      <div className="container">
+        <Switch>{/* <Route exact path="/" component={Home} /> */}</Switch>
+      </div>
+    </Router>
   );
 }
 
