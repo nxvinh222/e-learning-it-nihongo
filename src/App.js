@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
 
-import Login from "./components/Login";
 import Nav from "./components/Nav";
+import AddTest from "./components/AddTest";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -31,7 +31,9 @@ function App() {
     <Router>
       <Nav user={user} loading={loading} logout={logout} />
       <div className="container">
-        <Switch>{/* <Route exact path="/" component={Home} /> */}</Switch>
+        <Switch>
+          <Route exact path="/add" component={AddTest} />
+        </Switch>
       </div>
     </Router>
   );

@@ -37,3 +37,12 @@ export const storeUserInfo = async (user) => {
     };
   }
 };
+
+export const addFirebaseTest = async (item) => {
+  try {
+    const todoRef = db.collection("tests");
+    await todoRef.add(item);
+  } catch (err) {
+    console.log(err);
+  }
+};
