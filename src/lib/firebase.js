@@ -42,6 +42,7 @@ export const addFirebaseTest = async (item) => {
   try {
     const todoRef = db.collection("tests");
     await todoRef.add(item);
+    window.location.href = "/";
   } catch (err) {
     console.log(err);
   }

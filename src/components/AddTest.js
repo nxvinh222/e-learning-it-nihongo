@@ -66,8 +66,8 @@ function AddTest() {
       </form>
     </div>
   ) : (
-    <div className="add-test row">
-      <form onSubmit={handleSubmit} className="col-4">
+    <div className="add-test row p-3 m-3">
+      <form onSubmit={handleSubmit} className="col-8">
         {addTestFormList}
         <button type="submit" class="btn btn-primary">
           Submit
