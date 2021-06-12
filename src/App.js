@@ -7,10 +7,17 @@ import "./App.css";
 import Nav from "./components/Nav";
 import AddTest from "./components/AddTest";
 import ListTest from "./components/ListTest";
+import DetailTest from "./components/DetailTest";
+
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState([]);
+  const [selectedTest,setSelectedTest] = useState();
+
+  const handleSelect = (test) => {
+    setSelectedTest(test);
+  }
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
@@ -20,7 +27,6 @@ function App() {
         newUser = await storeUserInfo(user);
       }
       setUser(newUser);
-      console.log(newUser);
     });
   }, []);
 
@@ -34,7 +40,12 @@ function App() {
       <div className="container">
         <Switch>
           <Route exact path="/add" component={AddTest} />
-          <Route exact path="/home" component={ListTest}/>
+          <Route exact path="/home" >
+            <ListTest handleSelect={handleSelect}></ListTest>
+          </Route>
+          <Route exact path="/detail" >
+            <DetailTest selected={selectedTest}></DetailTest>
+          </Route>
         </Switch>
       </div>
     </Router>
