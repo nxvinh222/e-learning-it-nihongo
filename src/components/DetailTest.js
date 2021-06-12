@@ -1,14 +1,15 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 
 const DetailTest = (props) => {
+    const [testItem, setTestItem] = useState();
 
-    // useEffect (() =>{
-    //     console.log(props)
-    // },[]);
+    useEffect (() =>{
+        // setTestItem(props.selected);
+        console.log(props);
+    },[]);
 
     return (
         <>
-            {props.selected.title}
         </>
     );
 }

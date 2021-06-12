@@ -3,14 +3,17 @@ import {Card, Col, Row,} from "react-bootstrap";
 import "../styles/ListTest.css";
 import {Search, CardChecklist, EyeFill} from "react-bootstrap-icons";
 import useFirebaseStorage from "lib/firebasestorage";
+import Test from "./Test";
 
 const ListTest = (props) => {
   const [items, addItem, updateItem, clearItems] = useFirebaseStorage();
   const [searchItem,setSearchItem] = useState("");
   const [selectedTest,setSelectedTest] = useState();
-  const handleClick = () => {
+  
+  useEffect (() => {
+    console.log(selectedTest);
     props.handleSelect(selectedTest);
-  }
+  },[selectedTest]);
   return (
       <>
       <img src="/images/tittle.jpg" alt="title-image" className="image-title"/>
@@ -31,32 +34,7 @@ const ListTest = (props) => {
               </div>
             </Col>
           </Row>
-          <Row style={{marginTop: "30px"}}>
-              {items.filter((itemTest) => {
-                if (itemTest.title == ""){
-                  return itemTest
-                } else if (itemTest.title.toLocaleLowerCase().includes(searchItem.toLocaleLowerCase())){
-                  return itemTest
-                }
-              }).map((test,index) => {
-                  return (
-                      <Col md={4}>
-                        <div className="test-item" onClick={ () => {
-                          setSelectedTest(test);
-                          console.log("tajo ow day");
-                          console.log(selectedTest);
-                          handleClick();
-                          }}
-                        >
-                          <h4 className="test-item-header"><CardChecklist></CardChecklist>  {test.title}</h4>
-                          <div className="card-body">
-                            <span><EyeFill></EyeFill>    {test.times}</span>
-                          </div>
-                        </div>
-                      </Col>
-                  );
-              })}
-          </Row>
+          <Test items={items} searchItem={searchItem} setSelectedTest={setSelectedTest}/>
         </Card.Body>
       </Card>
       </>

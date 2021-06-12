@@ -16,6 +16,7 @@ function App() {
   const [selectedTest,setSelectedTest] = useState();
 
   const handleSelect = (test) => {
+    console.log(test);
     setSelectedTest(test);
   }
 
