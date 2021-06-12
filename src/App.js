@@ -6,6 +6,7 @@ import "./App.css";
 
 import Nav from "./components/Nav";
 import AddTest from "./components/AddTest";
+import ListTest from "./components/ListTest";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -33,6 +34,7 @@ function App() {
       <div className="container">
         <Switch>
           <Route exact path="/add" component={AddTest} />
+          <Route exact path="/home" component={ListTest}/>
         </Switch>
       </div>
     </Router>
