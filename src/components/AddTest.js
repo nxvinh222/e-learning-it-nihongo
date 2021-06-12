@@ -80,7 +80,7 @@ function AddTest() {
               type="text"
               class="form-control"
               id="test-name"
-              placeholder="Question"
+              placeholder="Test name"
             />
           </div>
         </div>
