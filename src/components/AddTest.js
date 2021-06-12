@@ -11,7 +11,7 @@ function AddTest() {
   const [questionNum, setQuestionNum] = useState(-1);
   const handleSubmit = (event) => {
     event.preventDefault();
-    var questionList = { test: [] };
+    var questionList = { test: [], name: "" };
     var question;
     var formList = document.querySelectorAll("div.question");
 
@@ -26,8 +26,10 @@ function AddTest() {
       questionList.test.push(question);
     });
 
-    console.log(questionList);
+
     console.log(questionNum);
+    questionList.name = document.querySelectorAll("#test-name")[0].value
+    console.log(questionList);
     addFirebaseTest(questionList);
   };
 
@@ -68,6 +70,21 @@ function AddTest() {
   ) : (
     <div className="add-test row p-3 m-3">
       <form onSubmit={handleSubmit} className="col-8">
+
+        <div className="test-name">
+          <div className="form-group">
+            <label className="h5" for="exampleInputEmail1">
+              Enter test name:
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="test-name"
+              placeholder="Question"
+            />
+          </div>
+        </div>
+
         {addTestFormList}
         <button type="submit" class="btn btn-primary">
           Submit
