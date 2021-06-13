@@ -5,6 +5,7 @@ import useFirebaseStorage from "lib/firebasestorage";
 import Test from "./Test";
 import Tests from "../Data/Tests";
 import { getFirebaseItems } from "lib/firebase";
+import SearchItem from "./SearchItem";
 
 const ListTest = (props) => {
   // const [items, addItem, updateItem, clearItems] = useFirebaseStorage();
@@ -24,18 +25,7 @@ const ListTest = (props) => {
           <h3>List Tests</h3>
         </Card.Header>
         <Card.Body>
-          <Row>
-            <Col md={6}>
-              <div className="search-area">
-                <input type="text" placeholder="Search ...."
-                  onChange={(event) => {
-                    setSearchItem(event.target.value)
-                  }}
-                  style={{width: "100%",height: "40px"}}
-                />
-              </div>
-            </Col>
-          </Row>
+          <SearchItem setSearchItem={setSearchItem}></SearchItem>
           <Test 
             items={Tests} 
             searchItem={searchItem} 
