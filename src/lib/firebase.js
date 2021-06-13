@@ -44,7 +44,6 @@ export const addFirebaseTest = async (item) => {
     await todoRef.add(item);
     window.location.href = "/";
   } catch (err) {
-    console.log(err);
   }
 };
 
@@ -58,7 +57,6 @@ export const getFirebaseItems = async () => {
       );
       return items;
   } catch (err) {
-      console.log(err);
       return [];
   }
 };
@@ -68,7 +66,6 @@ export const addFirebaseItem = async (item) => {
     const todoRef = db.collection("tests");
     await todoRef.add(item);
   } catch (err) {
-    console.log(err);
   }
 }
 
@@ -77,7 +74,6 @@ export const updateFirebaseItem = async (item, id) => {
     const todoRef = db.collection("tests").doc(id);
     await todoRef.update(item);
   } catch (err) {
-    console.log(err);
   }
 }
 
@@ -85,6 +81,5 @@ export const clearFirebaseItem = async (item) => {
   const todoRef = db.collection("tests").doc(item.id);
   await todoRef.delete().then(function () {
   }).catch(function (err) {
-    console.log(err);
   });
 };

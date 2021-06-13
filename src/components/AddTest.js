@@ -27,9 +27,7 @@ function AddTest() {
     });
 
 
-    console.log(questionNum);
     questionList.name = document.querySelectorAll("#test-name")[0].value
-    console.log(questionList);
     addFirebaseTest(questionList);
   };
 
@@ -44,7 +42,6 @@ function AddTest() {
     for (i = 1; i <= questionNum; i++) {
       arr.push(i);
     }
-    console.log(questionNum);
     setAddTestFormList(arr.map((i) => <AddTestForm questionNumber={i} />));
   }, [questionNum]);
 
