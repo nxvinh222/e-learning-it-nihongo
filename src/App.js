@@ -8,7 +8,7 @@ import Nav from "./components/Nav";
 import AddTest from "./components/AddTest";
 import ListTest from "./components/ListTest";
 import DetailTest from "./components/DetailTest";
-
+import DoTest from "./components/DoTest";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -48,6 +48,9 @@ function App() {
           </Route>
           <Route exact path="/home/detail" >
             <DetailTest selected={selectedTest}></DetailTest>
+          </Route>
+          <Route exact path="/test" >
+            <DoTest></DoTest>
           </Route>
         </Switch>
       </div>

@@ -19,7 +19,7 @@ const Test = (props) => {
       <>
         <Row style={{marginTop: "30px"}}>
             {props.items.filter((itemTest) => {
-            if (itemTest.title == ""){
+            if (typeof itemTest.title === 'undefined' || itemTest.title == ""){
                 return itemTest
             } else if (itemTest.title.toLocaleLowerCase().includes(props.searchItem.toLocaleLowerCase())){
                 return itemTest
