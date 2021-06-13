@@ -13,11 +13,11 @@ import DetailTest from "./components/DetailTest";
 function App() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState([]);
-  const [selectedTest,setSelectedTest] = useState();
+  const [selectedTest, setSelectedTest] = useState(null);
 
   const handleSelect = (test) => {
-    console.log(test);
     setSelectedTest(test);
+    console.log(test);
   }
 
   useEffect(() => {
@@ -35,6 +35,8 @@ function App() {
     auth.signOut();
   };
 
+
+
   return (
     <Router>
       <Nav user={user} loading={loading} logout={logout} />
@@ -44,7 +46,7 @@ function App() {
           <Route exact path="/home" >
             <ListTest handleSelect={handleSelect}></ListTest>
           </Route>
-          <Route exact path="/detail" >
+          <Route exact path="/home/detail" >
             <DetailTest selected={selectedTest}></DetailTest>
           </Route>
         </Switch>

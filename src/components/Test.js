@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from "react";
-import {Card, Col, Row,Button} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import "../styles/ListTest.css";
 import {CardChecklist, EyeFill} from "react-bootstrap-icons";
 import { useHistory } from "react-router";
@@ -7,8 +7,14 @@ import { useHistory } from "react-router";
 const Test = (props) => {
     let history = useHistory();
     const navigateToDetail = () => {
-       history.push("/detail");
+       history.push("/home/detail");
     }
+    const [selected,setSelected] = useState();
+    useEffect (() => {
+        props.setSelectedTest(selected);
+        return () => {
+        };
+    },[selected]);
     return (
       <>
         <Row style={{marginTop: "30px"}}>
@@ -23,7 +29,7 @@ const Test = (props) => {
                     <Col md={4}>
                     <div className="test-item"
                     onClick={() => {
-                        props.setSelectedTest(test);
+                        setSelected(test);
                         navigateToDetail();
                     }}
                     >

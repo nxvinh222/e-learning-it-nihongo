@@ -38,7 +38,7 @@ function useFirebaseStorage() {
     })
     setItems([]);
   };
-
+  // console.log(items);
   return [items, addItem, updateItem, clearItems];
 }
 

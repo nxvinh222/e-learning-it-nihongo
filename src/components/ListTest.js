@@ -3,15 +3,18 @@ import {Card, Col, Row,} from "react-bootstrap";
 import "../styles/ListTest.css";
 import useFirebaseStorage from "lib/firebasestorage";
 import Test from "./Test";
+import Tests from "../Data/Tests";
 
 const ListTest = (props) => {
+  // const [listTest, setListTest] = useState();
   const [items, addItem, updateItem, clearItems] = useFirebaseStorage();
   const [searchItem,setSearchItem] = useState("");
   const [selectedTest,setSelectedTest] = useState();
-  
   useEffect (() => {
-    console.log(selectedTest);
+    // console.log(selectedTest);
     props.handleSelect(selectedTest);
+    return () => {
+    };
   },[selectedTest]);
   return (
       <>
@@ -33,7 +36,11 @@ const ListTest = (props) => {
               </div>
             </Col>
           </Row>
-          <Test items={items} searchItem={searchItem} setSelectedTest={setSelectedTest}/>
+          <Test 
+            items={Tests} 
+            searchItem={searchItem} 
+            setSelectedTest={setSelectedTest}
+          />
         </Card.Body>
       </Card>
       </>

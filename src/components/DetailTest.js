@@ -1,13 +1,9 @@
-import React,{useEffect,useState} from "react";
+import React,{useState} from "react";
 
 const DetailTest = (props) => {
-    const [testItem, setTestItem] = useState();
+    const {selected} = props;
 
-    useEffect (() =>{
-        // setTestItem(props.selected);
-        console.log(props);
-    },[]);
-
+    if(selected == null) console.log("that bai");
     return (
         <>
         </>
