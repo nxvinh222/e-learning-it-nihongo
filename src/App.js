@@ -16,9 +16,12 @@ function App() {
   const [selectedTest, setSelectedTest] = useState(null);
 
   const handleSelect = (test) => {
-    setSelectedTest(test);
-    console.log(test);
+    setSelectedTest(test); // lenh gan selectedTEst
   }
+  useEffect(() => {
+    console.log(selectedTest);
+    console.log("re render");
+  },[selectedTest]);
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
@@ -35,8 +38,6 @@ function App() {
     auth.signOut();
   };
 
-
-
   return (
     <Router>
       <Nav user={user} loading={loading} logout={logout} />
@@ -46,7 +47,7 @@ function App() {
           <Route exact path="/home" >
             <ListTest handleSelect={handleSelect}></ListTest>
           </Route>
-          <Route exact path="/home/detail" >
+          <Route exact path="/home/detail">
             <DetailTest selected={selectedTest}></DetailTest>
           </Route>
           <Route exact path="/test" >

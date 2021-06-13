@@ -4,18 +4,18 @@ import "../styles/ListTest.css";
 import useFirebaseStorage from "lib/firebasestorage";
 import Test from "./Test";
 import Tests from "../Data/Tests";
+import { getFirebaseItems } from "lib/firebase";
 
 const ListTest = (props) => {
-  // const [listTest, setListTest] = useState();
-  const [items, addItem, updateItem, clearItems] = useFirebaseStorage();
+  // const [items, addItem, updateItem, clearItems] = useFirebaseStorage();
+  const [items,setItems] = useState();
   const [searchItem,setSearchItem] = useState("");
-  const [selectedTest,setSelectedTest] = useState();
+
   useEffect (() => {
-    // console.log(selectedTest);
-    props.handleSelect(selectedTest);
-    return () => {
-    };
-  },[selectedTest]);
+    const _items = getFirebaseItems();
+    setItems(_items);
+  },[]);
+  
   return (
       <>
       <img src="/images/tittle.jpg" alt="title-image" className="image-title"/>
@@ -39,7 +39,7 @@ const ListTest = (props) => {
           <Test 
             items={Tests} 
             searchItem={searchItem} 
-            setSelectedTest={setSelectedTest}
+            handleSelect={props.handleSelect}
           />
         </Card.Body>
       </Card>

@@ -9,12 +9,9 @@ const Test = (props) => {
     const navigateToDetail = () => {
        history.push("/home/detail");
     }
-    const [selected,setSelected] = useState();
     useEffect (() => {
-        props.setSelectedTest(selected);
-        return () => {
-        };
-    },[selected]);
+        
+    },[]);
     return (
       <>
         <Row style={{marginTop: "30px"}}>
@@ -29,7 +26,7 @@ const Test = (props) => {
                     <Col md={4}>
                     <div className="test-item"
                     onClick={() => {
-                        setSelected(test);
+                        props.handleSelect(test);
                         navigateToDetail();
                     }}
                     >
