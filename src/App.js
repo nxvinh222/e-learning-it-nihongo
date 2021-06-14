@@ -9,19 +9,17 @@ import AddTest from "./components/AddTest";
 import ListTest from "./components/ListTest";
 import DetailTest from "./components/DetailTest";
 import DoTest from "./components/DoTest";
+import PersonalStats from "./components/PersonalStats";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState([]);
-  const [selectedTest, setSelectedTest] = useState(null);
+  const [selectedTest,setSelectedTest] = useState();
 
   const handleSelect = (test) => {
-    setSelectedTest(test); // lenh gan selectedTEst
+    console.log(test);
+    setSelectedTest(test);
   }
-  useEffect(() => {
-    console.log(selectedTest);
-    console.log("re render");
-  },[selectedTest]);
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
@@ -47,11 +45,14 @@ function App() {
           <Route exact path="/home" >
             <ListTest handleSelect={handleSelect}></ListTest>
           </Route>
-          <Route exact path="/home/detail">
+          <Route exact path="/detail" >
             <DetailTest selected={selectedTest}></DetailTest>
           </Route>
           <Route exact path="/test" >
             <DoTest></DoTest>
+          </Route>
+          <Route exact path="/stats" >
+          <PersonalStats></PersonalStats>
           </Route>
         </Switch>
       </div>
