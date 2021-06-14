@@ -26,8 +26,7 @@ function AddTest() {
       questionList.test.push(question);
     });
 
-
-    questionList.name = document.querySelectorAll("#test-name")[0].value
+    questionList.title = document.querySelectorAll("#test-name")[0].value;
     addFirebaseTest(questionList);
   };
 
@@ -67,7 +66,6 @@ function AddTest() {
   ) : (
     <div className="add-test row p-3 m-3">
       <form onSubmit={handleSubmit} className="col-8">
-
         <div className="test-name">
           <div className="form-group">
             <label className="h5" for="exampleInputEmail1">
