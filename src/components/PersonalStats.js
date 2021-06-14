@@ -21,7 +21,7 @@ const PersonalStats = (props) => {
           <h3>User Stats</h3>
         </Card.Header>
         <Card.Body>
-          <h4>User name: {user} </h4>
+          <h4>User name: {props.user.name} </h4>
           <Row>
             <Col md={6}>
               <div className="search-area">
