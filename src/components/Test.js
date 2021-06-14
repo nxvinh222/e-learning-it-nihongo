@@ -23,7 +23,7 @@ const Test = (props) => {
             }
             }).map((test,index) => {
                 return (
-                    <Col md={4}>
+                    <Col md={4} key={index}>
                     <div className="test-item"
                     onClick={() => {
                         props.handleSelect(test);

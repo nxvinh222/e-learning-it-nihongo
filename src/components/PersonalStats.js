@@ -1,5 +1,4 @@
 import React,{useState, useEffect} from "react";
-import { auth, storeUserInfo } from "./lib/firebase";
 import {Card, Col, Row,} from "react-bootstrap";
 import "../styles/ListTest.css";
 import useFirebaseStorage from "lib/firebasestorage";
