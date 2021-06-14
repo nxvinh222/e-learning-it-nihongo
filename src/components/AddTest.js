@@ -27,6 +27,7 @@ function AddTest() {
     });
 
     questionList.title = document.querySelectorAll("#test-name")[0].value;
+    questionList.kind = document.querySelectorAll("#kind")[0].value;
     addFirebaseTest(questionList);
   };
 
@@ -78,6 +79,15 @@ function AddTest() {
               placeholder="Test name"
             />
           </div>
+        </div>
+
+        <div className="form-group col-3">
+          <label for="exampleFormControlSelect1">Answer key</label>
+          <select className="form-control" id="kind">
+            <option>toán</option>
+            <option>lý</option>
+            <option>hóa</option>
+          </select>
         </div>
 
         {addTestFormList}
