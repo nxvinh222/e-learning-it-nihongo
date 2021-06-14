@@ -65,9 +65,6 @@ function App() {
           <Route exact path="/home/detail">
             <DetailTest selected={selectedTest}></DetailTest>
           </Route>
-          <Route exact path="/test" >
-            <DoTest></DoTest>
-          </Route>
           <Route exact path="home/stats" >
           <PersonalStats></PersonalStats>
           </Route>
