@@ -25,6 +25,7 @@ function App() {
   useEffect(() => {
     console.log(selectedTest);
   },[selectedTest]);
+  
   // lay du lieu tu firebase
   const getItems = async () => {
     const _items = await getFirebaseItems();

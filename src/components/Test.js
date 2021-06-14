@@ -10,16 +10,17 @@ const Test = (props) => {
        history.push("/home/detail");
     }
     useEffect (() => {
-        
     },[]);
     return (
       <>
         <Row style={{marginTop: "30px"}}>
-            {props.items.filter((itemTest) => {
+            {props.items && props.items.filter((itemTest) => {
             if (typeof itemTest.title === 'undefined' || itemTest.title == ""){
                 return itemTest
             } else if (itemTest.title.toLocaleLowerCase().includes(props.searchItem.toLocaleLowerCase())){
-                return itemTest
+                if (itemTest.kind == props.filterItem || props.filterItem==""){
+                    return itemTest
+                }
             }
             }).map((test,index) => {
                 return (

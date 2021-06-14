@@ -11,25 +11,24 @@ import Filter from "./Filter";
 const ListTest = (props) => {
   
   const [searchItem,setSearchItem] = useState("");
+  const [filterItem,setFilterItem] = useState("");
   const kinds = [];
-  const [items,setItems] = useState(null);
+
+  if(props.items){
+    props.items.map((test) => {
+      if(!kinds.includes(test.kind)){
+        kinds.push(test.kind);
+      }
+    })
+  }
   
-  useEffect(()=>{
-    setItems(props.items);
-    console.log(items);
-  },[items]);
-  Tests.map((test) => {
-    if(!kinds.includes(test.kind)){
-      kinds.push(test.kind);
-    }
-  })
   const setFilter = (input) => {
     if(kinds.includes(input)) {
-      setSearchItem(input);
-    } else setSearchItem("");
+      setFilterItem(input);
+    } else setFilterItem("");
   }
   useEffect(()=>{
-  },[searchItem]);
+  },[searchItem,filterItem]);
   
   return (
       <>
@@ -40,7 +39,12 @@ const ListTest = (props) => {
         </Card.Header>
         <Card.Body>
           <Row>
-            <Col md={{span: 6}}><SearchItem setSearchItem={setSearchItem}></SearchItem></Col>
+            <Col md={{span: 6}}>
+              <SearchItem 
+                setSearchItem={setSearchItem}
+                
+              ></SearchItem>
+            </Col>
             <Col md={{span: 2,offset:3}} style={{marginLeft: "32%"}}>
               <Filter 
                 setFilter={setFilter}
@@ -49,8 +53,9 @@ const ListTest = (props) => {
             </Col>
           </Row>
           <Test 
-            items={Tests} 
+            items={props.items} 
             searchItem={searchItem} 
+            filterItem={filterItem}
             handleSelect={props.handleSelect}
           />
         </Card.Body>
