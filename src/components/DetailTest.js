@@ -4,14 +4,13 @@ import DoTestForm from "components/DoTestForm";
 
 
 const DetailTest = (props) => {
+  const history=useHistory();
   const {selected} = props;
   if(selected == null) {
     console.log("that bai");
     history.push("/home");
   }
-    
-  
-  
+
   var d = new Date().getTime();
   const [doTestFormList, setDoTestFormList] = useState([]);
   
