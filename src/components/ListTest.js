@@ -4,21 +4,25 @@ import "../styles/ListTest.css";
 import useFirebaseStorage from "lib/firebasestorage";
 import Test from "./Test";
 import Tests from "../Data/Tests";
-import { getFirebaseItems } from "lib/firebase";
+
 import SearchItem from "./SearchItem";
 import Filter from "./Filter";
 
 const ListTest = (props) => {
-  // const [items, addItem, updateItem, clearItems] = useFirebaseStorage();
-  const [items,setItems] = useState();
+  
   const [searchItem,setSearchItem] = useState("");
   const kinds = [];
+  const [items,setItems] = useState(null);
+  
+  useEffect(()=>{
+    setItems(props.items);
+    console.log(items);
+  },[items]);
   Tests.map((test) => {
     if(!kinds.includes(test.kind)){
       kinds.push(test.kind);
     }
   })
-
   const setFilter = (input) => {
     if(kinds.includes(input)) {
       setSearchItem(input);
@@ -26,10 +30,6 @@ const ListTest = (props) => {
   }
   useEffect(()=>{
   },[searchItem]);
-  useEffect (() => {
-    const _items = getFirebaseItems();
-    setItems(_items);
-  },[]);
   
   return (
       <>
