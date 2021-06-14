@@ -4,32 +4,31 @@ import "../styles/ListTest.css";
 import useFirebaseStorage from "lib/firebasestorage";
 import Test from "./Test";
 import Tests from "../Data/Tests";
-import { getFirebaseItems } from "lib/firebase";
+
 import SearchItem from "./SearchItem";
 import Filter from "./Filter";
 
 const ListTest = (props) => {
-  // const [items, addItem, updateItem, clearItems] = useFirebaseStorage();
-  const [items,setItems] = useState();
+  
   const [searchItem,setSearchItem] = useState("");
+  const [filterItem,setFilterItem] = useState("");
   const kinds = [];
-  Tests.map((test) => {
-    if(!kinds.includes(test.kind)){
-      kinds.push(test.kind);
-    }
-  })
 
+  if(props.items){
+    props.items.map((test) => {
+      if(!kinds.includes(test.kind)){
+        kinds.push(test.kind);
+      }
+    })
+  }
+  
   const setFilter = (input) => {
     if(kinds.includes(input)) {
-      setSearchItem(input);
-    } else setSearchItem("");
+      setFilterItem(input);
+    } else setFilterItem("");
   }
   useEffect(()=>{
-  },[searchItem]);
-  useEffect (() => {
-    const _items = getFirebaseItems();
-    setItems(_items);
-  },[]);
+  },[searchItem,filterItem]);
   
   return (
       <>
@@ -40,7 +39,12 @@ const ListTest = (props) => {
         </Card.Header>
         <Card.Body>
           <Row>
-            <Col md={{span: 6}}><SearchItem setSearchItem={setSearchItem}></SearchItem></Col>
+            <Col md={{span: 6}}>
+              <SearchItem 
+                setSearchItem={setSearchItem}
+                
+              ></SearchItem>
+            </Col>
             <Col md={{span: 2,offset:3}} style={{marginLeft: "32%"}}>
               <Filter 
                 setFilter={setFilter}
@@ -49,8 +53,9 @@ const ListTest = (props) => {
             </Col>
           </Row>
           <Test 
-            items={Tests} 
+            items={props.items} 
             searchItem={searchItem} 
+            filterItem={filterItem}
             handleSelect={props.handleSelect}
           />
         </Card.Body>

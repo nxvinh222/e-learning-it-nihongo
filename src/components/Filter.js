@@ -18,11 +18,14 @@ const Filter = (props) => {
                     }}
                     active
                 >All</Dropdown.Item>
-                {props.kinds.map((kind)=>{
+                {props.kinds.map((kind, index)=>{
                     return(
-                        <Dropdown.Item onClick={()=>{
-                            props.setFilter(kind);
-                        }}>
+                        <Dropdown.Item 
+                            onClick={()=>{
+                                props.setFilter(kind);
+                            }}
+                            key={index}
+                        >
                             {upper(kind)}
                         </Dropdown.Item>
                         

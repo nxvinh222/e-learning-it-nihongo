@@ -10,11 +10,13 @@ import ListTest from "./components/ListTest";
 import DetailTest from "./components/DetailTest";
 import DoTest from "./components/DoTest";
 import PersonalStats from "./components/PersonalStats";
+import { getFirebaseItems } from "lib/firebase";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState([]);
   const [selectedTest, setSelectedTest] = useState(null);
+  const [items,setItems] = useState(null);
 
   const handleSelect = (test) => {
     setSelectedTest(test); // lenh gan selectedTEst
@@ -22,8 +24,19 @@ function App() {
   
   useEffect(() => {
     console.log(selectedTest);
-    console.log("re render");
   },[selectedTest]);
+  
+  // lay du lieu tu firebase
+  const getItems = async () => {
+    const _items = await getFirebaseItems();
+    setItems(_items);
+  };
+  useEffect(()=>{
+    getItems();
+  },[]);
+  useEffect(()=>{
+    console.log(items);
+  },[items]);
 
   useEffect(() => {
     auth.onAuthStateChanged(async (user) => {
@@ -47,7 +60,7 @@ function App() {
         <Switch>
           <Route exact path="/add" component={AddTest} />
           <Route exact path="/home" >
-            <ListTest handleSelect={handleSelect}></ListTest>
+            <ListTest handleSelect={handleSelect} items={items}></ListTest>
           </Route>
           <Route exact path="/home/detail">
             <DetailTest selected={selectedTest}></DetailTest>
