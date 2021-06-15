@@ -3,38 +3,70 @@ import {Card, Col, Row,} from "react-bootstrap";
 import "../styles/ListTest.css";
 import useFirebaseStorage from "lib/firebasestorage";
 import Test from "./Test";
+import Tests from "../Data/Tests";
+import Login from "components/Login";
+
+import SearchItem from "./SearchItem";
+import Filter from "./Filter";
+
+
 
 const PersonalStats = (props) => {
-  const [user, setUser] = useState();
-  const [items, addItem, updateItem, clearItems] = useFirebaseStorage();
+
   const [searchItem,setSearchItem] = useState("");
-  const [selectedTest,setSelectedTest] = useState();
+  const [filterItem,setFilterItem] = useState("");
+  const kinds = [];
+  var usernamae;
+
+  if(props.items){
+    props.items.map((test) => {
+      if(!kinds.includes(test.kind)){
+        kinds.push(test.kind);
+      }
+    })
+  }
   
-  useEffect (() => {
-    console.log(selectedTest);
-    props.handleSelect(selectedTest);
-  },[selectedTest]);
+  const setFilter = (input) => {
+    if(kinds.includes(input)) {
+      setFilterItem(input);
+    } else setFilterItem("");
+  }
+  useEffect(()=>{
+  },[searchItem,filterItem]);
+  
+  if (props.user) {
+    usernamae = props.user.name;
+  }
+  else usernamae = "null";
+  
   return (
       <>
+      <img src="/images/tittle.jpg" alt="title-image" className="image-title"/>
       <Card>
         <Card.Header>
-          <h3>User Stats</h3>
+          <h3>PersonalStats - User Name: {usernamae}</h3>
         </Card.Header>
         <Card.Body>
-          <h4>User name: {user} </h4>
           <Row>
-            <Col md={6}>
-              <div className="search-area">
-                <input type="text" placeholder="Search ...."
-                  onChange={(event) => {
-                    setSearchItem(event.target.value)
-                  }}
-                  style={{width: "100%",height: "40px"}}
-                />
-              </div>
+            <Col md={{span: 6}}>
+              <SearchItem 
+                setSearchItem={setSearchItem}
+                
+              ></SearchItem>
+            </Col>
+            <Col md={{span: 2,offset:3}} style={{marginLeft: "32%"}}>
+              <Filter 
+                setFilter={setFilter}
+                kinds={kinds}
+              ></Filter>
             </Col>
           </Row>
-          <Test items={items} searchItem={searchItem} setSelectedTest={setSelectedTest}/>
+          <Test 
+            items={props.items} 
+            searchItem={searchItem} 
+            filterItem={filterItem}
+            handleSelect={props.handleSelect}
+          />
         </Card.Body>
       </Card>
       </>
