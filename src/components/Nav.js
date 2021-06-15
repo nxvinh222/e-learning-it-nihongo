@@ -68,6 +68,11 @@ function Nav(props) {
             </a>
           </li>
           <li className="nav-item">
+            <a className="nav-link" href="/stats">
+              Personal Stats
+            </a>
+          </li>
+          <li className="nav-item">
             {props.loading ? <p>LOADING.....</p> : <UserName />}
           </li>
           <li className="nav-item">
