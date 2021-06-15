@@ -64,7 +64,7 @@ function App() {
           <Route exact path="/home/detail">
             <DetailTest selected={selectedTest}></DetailTest>
           </Route>
-          <Route exact path="home/stats" >
+          <Route exact path="/stats" component={PersonalStats} >
           <PersonalStats></PersonalStats>
           </Route>
         </Switch>
