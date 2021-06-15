@@ -8,7 +8,6 @@ import Nav from "./components/Nav";
 import AddTest from "./components/AddTest";
 import ListTest from "./components/ListTest";
 import DetailTest from "./components/DetailTest";
-import DoTest from "./components/DoTest";
 import PersonalStats from "./components/PersonalStats";
 import { getFirebaseItems } from "lib/firebase";
 
